@@ -12,9 +12,9 @@ import { Fragment } from "react";
 import { cn } from "@/utils/helpers";
 
 export default function CustomSelect({
+  id,
   value,
   render,
-  queryKey,
   setSelected,
   options = [],
   fullWidth = false,
@@ -23,7 +23,7 @@ export default function CustomSelect({
   return (
     <Select value={value} onValueChange={setSelected} {...props}>
       <SelectTrigger
-        id={queryKey}
+        id={id}
         size="h-full"
         className={cn(
           "border-beige-500 focus:border-beige-500 text-grey-900 px-5 py-3",

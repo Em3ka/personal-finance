@@ -106,3 +106,15 @@ export function formatCurrency(amount, options = {}) {
 export function limitArray(arr, count = 4) {
   return arr.slice(0, count);
 }
+
+/**
+ * Generates a random decimal number between min and max, rounded to two decimal places.
+ *
+ * @param {number} [min=1000] - The minimum number (inclusive).
+ * @param {number} [max=10000] - The maximum number (exclusive).
+ * @returns {number} A random number rounded to two decimal places.
+ */
+export function generateRandomStartingBalance(min = 1000, max = 10000) {
+  const randomValue = Math.random() * (max - min) + min;
+  return Number(randomValue.toFixed(2));
+}

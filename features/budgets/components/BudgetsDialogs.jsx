@@ -2,17 +2,17 @@
 
 import BudgetForm from "./BudgetsForm";
 import { slugify } from "@/utils/helpers";
+import { deleteBudget } from "@/lib/actions";
 import { useBudgets } from "../BudgetsProvider";
 import BaseDialog from "@/components/layout/BaseDialog";
 import ConfirmDialog from "@/components/layout/ConfirmDialog";
-import { deleteBudget } from "@/lib/actions";
 
 export default function BudgetsDialogs() {
   const { dialog, closeDialog, budgets } = useBudgets();
 
   if (!dialog.type) return null;
 
-  /* I reused a single BudgetForm component because the form structure is identical
+  /* Reused the BudgetForm component because the form structure is identical
    * for both add + edit. The only differences are initial values and the action variant.
    * Using one form avoids duplicated markup and keeps changes centralized.
    */

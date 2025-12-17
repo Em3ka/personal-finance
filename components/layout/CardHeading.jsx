@@ -11,7 +11,7 @@ export default function CardHeading({
   urlLabel = "See all",
 }) {
   return (
-    <div className={`grid gap-5 ${wrapperClassName}`}>
+    <div className={`space-y-5 ${wrapperClassName}`}>
       <div className={`flex items-center justify-between ${className}`}>
         <Tag className="text-xl font-bold">{title}</Tag>
 

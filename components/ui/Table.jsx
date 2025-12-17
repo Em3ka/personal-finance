@@ -69,7 +69,7 @@ export default function Table({
               <tr>
                 <td
                   colSpan={columns.length}
-                  className="text-grey-500 bg-beige-100 rounded-md py-10 text-center font-semibold">
+                  className="text-grey-500 bg-beige-100 rounded-md py-14 text-center text-sm font-semibold">
                   {emptyMessage}
                 </td>
               </tr>

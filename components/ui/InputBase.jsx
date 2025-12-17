@@ -23,7 +23,7 @@ import { isValidElement } from "react";
  * @returns {JSX.Element} The rendered input component.
  */
 export default function InputBase({ leftIcon, rightIcon, fullWidth = false, ...props }) {
-  const renderIcon = (icon, position) => {
+  function renderIcon(icon, position) {
     if (!icon) return null;
 
     const baseClasses =
@@ -53,13 +53,13 @@ export default function InputBase({ leftIcon, rightIcon, fullWidth = false, ...p
     }
 
     return null;
-  };
+  }
 
   const hasLeft = Boolean(leftIcon);
   const hasRight = Boolean(rightIcon);
 
   return (
-    <div className={cn("relative w-full", fullWidth ? "" : "max-w-[320px]")}>
+    <div className={cn("relative w-full", fullWidth ? "" : "max-w-[20rem]")}>
       {renderIcon(leftIcon, "left")}
       <input
         {...props}

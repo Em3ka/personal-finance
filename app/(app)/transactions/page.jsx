@@ -23,7 +23,7 @@ export default function Page({ searchParams }) {
   return (
     <>
       <SectionHeading title="Transactions" />
-      <div className="grid gap-6 rounded-xl bg-white px-5 py-6 lg:p-8">
+      <div className="grid gap-6 self-start rounded-xl bg-white px-5 py-6 lg:p-8">
         <FiltersProvider config={filtersConfig}>
           <FiltersLayout />
         </FiltersProvider>

@@ -16,7 +16,7 @@ export default function Chart({ data }) {
   const handleMouseLeave = () => setActiveIndex(null);
 
   return (
-    <ResponsiveContainer width="100%" height={280}>
+    <ResponsiveContainer className="min-h-72 max-w-72 justify-self-center">
       <PieChart>
         {/* --- solid background ring --- */}
         <Pie

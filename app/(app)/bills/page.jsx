@@ -29,7 +29,7 @@ export default function Page({ searchParams }) {
     <>
       <SectionHeading title="Recurring Bills" />
 
-      <div className="4xl:grid-cols-[1fr_2fr] grid gap-6">
+      <div className="4xl:grid-cols-[1fr_2fr] grid gap-6 self-start">
         <div className="grid gap-6 self-start md:grid-cols-2 lg:grid-cols-1">
           <Suspense fallback={<BillsTotalSkeleton />}>
             <BillsTotal data={bills} />

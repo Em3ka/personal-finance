@@ -3,11 +3,11 @@ import { formatCurrency } from "@/utils/helpers";
 import BillSummaryItem from "./BillSummaryItem";
 
 export default function BillsSummary({ data }) {
-  const { data: billsData } = use(data);
+  const { data: bills = [] } = use(data);
 
-  const paidBills = billsData.filter((t) => t.paid);
-  const upcomingBills = billsData.filter((t) => t.isDue);
-  const dueSoonBills = billsData.filter((t) => t.showCaution);
+  const paidBills = bills.filter((t) => t.paid);
+  const upcomingBills = bills.filter((t) => t.isDue);
+  const dueSoonBills = bills.filter((t) => t.showCaution);
 
   const paidCount = paidBills.length;
   const upcomingCount = upcomingBills.length;

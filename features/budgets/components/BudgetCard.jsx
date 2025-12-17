@@ -1,5 +1,5 @@
-import { formatCurrency, slugify } from "@/utils/helpers";
 import Heading from "@/components/layout/Heading";
+import { formatCurrency, slugify } from "@/utils/helpers";
 import CardHeading from "@/components/layout/CardHeading";
 import CardTrnList from "@/components/layout/CardTrnList";
 import LabeledStat from "@/components/layout/LabeledStat";
@@ -43,18 +43,13 @@ export default function BudgetCard({
         <CardHeading
           as="h3"
           title="Latest Spending"
-          url={transactions.length > 0 ? url : ""}
+          url={transactions.length > 0 ? url : "#"}
           wrapperClassName="bg-beige-100 rounded-xl p-4 px-4 md:p-5">
-          {transactions.length > 0 ? (
-            <CardTrnList
-              data={transactions}
-              render={(item) => <CardTrnItem data={item} />}
-            />
-          ) : (
-            <div className="text-grey-500 py-6 text-center font-semibold">
-              No transactions found
-            </div>
-          )}
+          <CardTrnList
+            data={transactions}
+            emptyMessage="No recent transactions"
+            render={(item) => <CardTrnItem data={item} />}
+          />
         </CardHeading>
       </div>
     </article>

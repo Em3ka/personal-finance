@@ -2,10 +2,10 @@
 
 import BudgetSummary from "./BudgetSummary";
 import BudgetsDialogs from "./BudgetsDialogs";
-import Empty from "@/components/layout/Empty";
 import BudgetCardList from "./BudgetCardList";
 import { useBudgets } from "../BudgetsProvider";
 import { PlusIcon } from "@heroicons/react/24/solid";
+import PageEmpty from "@/components/layout/PageEmpty";
 import ActionButton from "@/components/ui/ActionButton";
 import SectionHeading from "@/components/layout/SectionHeading";
 
@@ -21,21 +21,18 @@ export default function BudgetsLayout() {
       </SectionHeading>
 
       {!budgets.length ? (
-        <Empty
+        <PageEmpty
           title="No Budgets Yet"
           message={`You haven't created any budgets yet.
           Get started by creating your first budget.`}
         />
       ) : (
-        <>
-          <div className="grid gap-6 lg:grid-cols-[1fr_1.4fr]">
-            <BudgetSummary />
-            <BudgetCardList />
-          </div>
-
-          <BudgetsDialogs />
-        </>
+        <div className="grid gap-6 lg:grid-cols-[1fr_1.4fr]">
+          <BudgetSummary />
+          <BudgetCardList />
+        </div>
       )}
+      <BudgetsDialogs />
     </>
   );
 }

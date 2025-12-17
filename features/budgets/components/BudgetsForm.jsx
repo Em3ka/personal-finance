@@ -85,8 +85,12 @@ export default function BudgetForm({ formData, onSuccess, variant = "default" })
         </Field>
       </form>
 
-      <ActionButton form={formId} type="submit" className="w-full" disabled={isPending}>
-        {isPending ? buttonLabel[variant].pendingText : buttonLabel[variant].text}
+      <ActionButton
+        form={formId}
+        type="submit"
+        loading={isPending}
+        loadingText={buttonLabel[variant].pendingText}>
+        {buttonLabel[variant].text}
       </ActionButton>
     </>
   );

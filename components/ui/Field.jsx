@@ -22,7 +22,7 @@ export default function Field({
     : children;
 
   return (
-    <div className="relative grid gap-1">
+    <div className="grid gap-1">
       <label htmlFor={htmlFor} className="text-grey-500 text-xs font-bold">
         {label}
       </label>
@@ -30,7 +30,8 @@ export default function Field({
       {message && (
         <p
           id={messageId}
-          className={`absolute right-0 -bottom-5 text-end text-xs ${isError ? "text-red-500" : "text-grey-500"}`}>
+          role={isError ? "alert" : undefined}
+          className={`text-end text-xs ${isError ? "text-red-500" : "text-grey-500"}`}>
           {message}
         </p>
       )}

@@ -6,6 +6,7 @@ export default function SearchInput({ isLoading = false, ...props }) {
   return (
     <InputBase
       {...props}
+      aria-busy={isLoading}
       rightIcon={isLoading ? <SpinnerMini color="dark" /> : MagnifyingGlassIcon}
     />
   );

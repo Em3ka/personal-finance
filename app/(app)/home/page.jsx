@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import StatsBills from "@/features/home/components/StatsBills";
 import StatsPots from "@/features/home/components/StatsPots";
+import StatsBills from "@/features/home/components/StatsBills";
 import SectionHeading from "@/components/layout/SectionHeading";
 import StatsBudgets from "@/features/home/components/StatsBudgets";
 import StatsSummary from "@/features/home/components/StatsSummary";
@@ -9,7 +9,13 @@ import StatsPotsSkeleton from "@/features/home/components/StatsPotsSkeleton";
 import StatsBillsSkeleton from "@/features/home/components/StatsBillsSkeleton";
 import StatsSummarySkeleton from "@/features/home/components/StatsSummarySkeleton";
 import StatsBudgetsSkeleton from "@/features/home/components/StatsBudgetsSkeleton";
-import { getBills, getBudgets, getPots, getTransactions } from "@/lib/data-service";
+import {
+  getPots,
+  getBills,
+  getBudgets,
+  getTransactions,
+  getCurrentBalance,
+} from "@/lib/data-service";
 import StatsTransactionsSkeleton from "@/features/home/components/StatsTransactionsSkeleton";
 
 export const metadata = {
@@ -23,6 +29,7 @@ export default function Page() {
   const bills = getBills();
   const budgets = getBudgets();
   const transactions = getTransactions();
+  const currentBalance = getCurrentBalance();
 
   return (
     <>
@@ -30,7 +37,7 @@ export default function Page() {
       <div className="space-y-8">
         <div className="flex flex-col gap-3 md:flex-row md:gap-6">
           <Suspense fallback={<StatsSummarySkeleton />}>
-            <StatsSummary data={transactions} />
+            <StatsSummary data={{ transactions, currentBalance }} />
           </Suspense>
         </div>
 

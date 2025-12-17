@@ -8,8 +8,13 @@ export default function PotStats({
   type = "default",
   isExceeded = false,
 }) {
+  const MAX_PERCENTAGE = 100;
+
   const safeAmount = Math.max(amount, 0);
-  const percentage = Math.min((safeAmount / target) * 100, 100).toFixed(2);
+  const percentage =
+    target > 0
+      ? Math.min((safeAmount / target) * MAX_PERCENTAGE, MAX_PERCENTAGE).toFixed(2)
+      : "0.00";
 
   return (
     <div className="space-y-3">

@@ -61,8 +61,12 @@ export default function PotUpdateForm({ type, formData, onSuccess }) {
         </Field>
       </form>
 
-      <ActionButton form={formId} disabled={isPending} type="submit" className="w-full">
-        {isPending ? potActionLabels[type].pendingText : potActionLabels[type].text}
+      <ActionButton
+        form={formId}
+        type="submit"
+        loading={isPending}
+        loadingText={potActionLabels[type].pendingText}>
+        {potActionLabels[type].text}
       </ActionButton>
     </>
   );

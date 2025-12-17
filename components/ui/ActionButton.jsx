@@ -1,9 +1,12 @@
 import { cn } from "@/utils/helpers";
+import SpinnerMini from "../layout/SpinnerMini";
 
 export default function ActionButton({
   onClick,
   children,
   icon: Icon,
+  loadingText,
+  loading = false,
   className = "",
   type = "button",
   variant = "primary",
@@ -27,10 +30,21 @@ export default function ActionButton({
       {...props}
       type={type}
       onClick={onClick}
+      aria-busy={loading}
+      disabled={loading || props.disabled}
       className={cn(baseStyles, variantStyles[variant], className)}>
-      {Icon && iconPosition === "left" && <Icon className="size-4" />}
-      {children}
-      {Icon && iconPosition === "right" && <Icon className="size-4" />}
+      {loading ? (
+        <>
+          <SpinnerMini />
+          <span aria-hidden>{loadingText ?? children}</span>
+        </>
+      ) : (
+        <>
+          {Icon && iconPosition === "left" && <Icon className="size-4" />}
+          {children}
+          {Icon && iconPosition === "right" && <Icon className="size-4" />}
+        </>
+      )}
     </button>
   );
 }

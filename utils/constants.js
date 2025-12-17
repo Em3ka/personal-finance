@@ -101,9 +101,6 @@ export const colorSelections = [
 export const potActionLabels = {
   add: { text: "Confirm Addition", pendingText: "Confirming..." },
   withdraw: { text: "Confirm Withdrawal", pendingText: "Confirming..." },
-};
-
-export const potFormLabels = {
   create: { text: "Add Pot", pendingText: "Adding Pot..." },
   edit: { text: "Save Changes", pendingText: "Saving changes..." },
 };
@@ -115,7 +112,6 @@ export const statsVariant = {
 };
 
 export const POT_DIALOGS = {
-  // Update operations
   add: {
     title: (name) => `Add to ‘${name}’`,
     message: `Add money to your pot to keep it separate from your main balance. 
@@ -130,7 +126,6 @@ export const POT_DIALOGS = {
     updateType: "withdraw",
   },
 
-  // Creation / edit operations
   "add-new": {
     title: () => "Add New Pot",
     message: `Create a pot to set savings targets. These can help keep you on track as you save for special purchases.`,
@@ -141,5 +136,38 @@ export const POT_DIALOGS = {
     title: () => "Edit Pot",
     message: `If your saving targets change, feel free to update your pots.`,
     formVariant: "edit",
+  },
+};
+
+export const SORT_DEFINITIONS = {
+  latest: {
+    column: "date",
+    ascending: false,
+    compare: (a, b) => new Date(b.date) - new Date(a.date),
+  },
+  oldest: {
+    column: "date",
+    ascending: true,
+    compare: (a, b) => new Date(a.date) - new Date(b.date),
+  },
+  "name-asc": {
+    column: "name",
+    ascending: true,
+    compare: (a, b) => a.name.localeCompare(b.name),
+  },
+  "name-desc": {
+    column: "name",
+    ascending: false,
+    compare: (a, b) => b.name.localeCompare(a.name),
+  },
+  "amount-asc": {
+    column: "amount",
+    ascending: true,
+    compare: (a, b) => Math.abs(a.amount) - Math.abs(b.amount),
+  },
+  "amount-desc": {
+    column: "amount",
+    ascending: false,
+    compare: (a, b) => Math.abs(b.amount) - Math.abs(a.amount),
   },
 };

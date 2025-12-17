@@ -4,7 +4,7 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 import { useBudgets } from "../BudgetsProvider";
 import BudgetSummary from "./BudgetSummary";
 import BudgetCardList from "./BudgetCardList";
-import Empty from "@/components/layout/Empty";
+import PageEmpty from "@/components/layout/PageEmpty";
 import BudgetsDialogs from "./BudgetsDialogs";
 import ActionButton from "@/components/ui/ActionButton";
 import SectionHeading from "@/components/layout/SectionHeading";
@@ -21,7 +21,7 @@ export default function BudgetsLayout() {
       </SectionHeading>
 
       {!budgets.length ? (
-        <Empty
+        <PageEmpty
           icon="budget"
           title="No Budgets Yet"
           message={`You haven't created any budgets yet.

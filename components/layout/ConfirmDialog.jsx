@@ -34,7 +34,7 @@ export default function ConfirmDialog({
     <Dialog open={open} onOpenChange={onCancel}>
       <DialogContent
         showCloseButton={false}
-        className="w-[560px] gap-5 rounded-xl px-5 py-6 md:gap-5 md:p-8">
+        className="w-140 gap-5 rounded-xl px-5 py-6 md:gap-5 md:p-8">
         <DialogHeader className="flex-row items-center justify-between">
           <DialogTitle className="text-xl font-bold md:text-[32px]">{title}</DialogTitle>
           <DialogClose asChild>
@@ -54,13 +54,13 @@ export default function ConfirmDialog({
             form={formId}
             type="submit"
             variant="danger"
-            className="w-full"
-            disabled={isPending}>
+            loading={isPending}
+            loadingText="Deleting...">
             Yes, Confirm Deletion
           </ActionButton>
 
           <DialogClose asChild>
-            <ActionButton variant="ghost" disabled={isPending} className="w-full">
+            <ActionButton variant="ghost" disabled={isPending}>
               No, I want to go back
             </ActionButton>
           </DialogClose>

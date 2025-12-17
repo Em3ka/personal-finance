@@ -1,12 +1,11 @@
 "use client";
 
+import Field from "@/components/ui/Field";
 import { createUser } from "@/lib/actions";
 import { useToast } from "@/hooks/useToast";
 import { useActionState, useState } from "react";
-import { FieldSchema } from "@/lib/schemas/fieldSchema";
-
-import Field from "@/components/ui/Field";
 import TextInput from "@/components/ui/TextInput";
+import { FieldSchema } from "@/lib/schemas/fieldSchema";
 import ActionButton from "@/components/ui/ActionButton";
 import SpinnerMini from "@/components/layout/SpinnerMini";
 import PasswordInput from "@/components/ui/PasswordInput";
@@ -19,7 +18,7 @@ export default function SignupForm() {
     success: false,
   });
 
-  // Validate one field using its Zod schema.
+  // Validate one field using its Zod schema (SignupSchema).
   function validateSingleField(fieldName, value) {
     const result = FieldSchema[fieldName].safeParse({ [fieldName]: value });
 
@@ -29,7 +28,7 @@ export default function SignupForm() {
     }));
   }
 
-  // Field error messages
+  // Field error messages: (Realtime validation errors OR server errors)
   const fieldMessages = {
     name: fieldErrors.name?.[0] || state.errors?.fieldErrors?.name?.[0],
     email: fieldErrors.email?.[0] || state.errors?.fieldErrors?.email?.[0],
@@ -43,9 +42,8 @@ export default function SignupForm() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold">Sign Up</h1>
-
-      <form id="signup-form" action={formAction} className="grid gap-4">
+      <h1 className="text-[2rem] font-bold">Sign Up</h1>
+      <form id="signup-form" action={formAction} className="space-y-4">
         <Field
           htmlFor="name"
           label="Name"
@@ -96,7 +94,7 @@ export default function SignupForm() {
         </Field>
       </form>
 
-      <ActionButton type="submit" form="signup-form" disabled={isPending}>
+      <ActionButton form="signup-form" type="submit" disabled={isPending}>
         {!isPending ? "Create Account" : <SpinnerMini />}
       </ActionButton>
 

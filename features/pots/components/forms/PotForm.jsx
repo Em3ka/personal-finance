@@ -1,13 +1,12 @@
+import Field from "@/components/ui/Field";
 import { updatePot } from "@/lib/actions";
 import { useToast } from "@/hooks/useToast";
-import { useActionState, useId, useState } from "react";
-import { colorSelections, MAX_CHARS, potFormLabels } from "@/utils/constants";
-
-import Field from "@/components/ui/Field";
 import TextInput from "@/components/ui/TextInput";
 import ActionButton from "@/components/ui/ActionButton";
+import { useActionState, useId, useState } from "react";
 import CustomSelect from "@/components/layout/CustomSelect";
 import SelectThemeItem from "@/components/layout/SelectThemeItem";
+import { colorSelections, MAX_CHARS, potActionLabels } from "@/utils/constants";
 
 export default function PotForm({ formData, onSuccess, variant = "create" }) {
   const { potId, usedColors, initialTheme, initialPotName, initialTargetAmount } =
@@ -84,8 +83,12 @@ export default function PotForm({ formData, onSuccess, variant = "create" }) {
         </Field>
       </form>
 
-      <ActionButton type="submit" className="w-full" disabled={isPending} form={formId}>
-        {isPending ? potFormLabels[variant].pendingText : potFormLabels[variant].text}
+      <ActionButton
+        form={formId}
+        type="submit"
+        loading={isPending}
+        loadingText={potActionLabels[variant].pendingText}>
+        {potActionLabels[variant].text}
       </ActionButton>
     </>
   );

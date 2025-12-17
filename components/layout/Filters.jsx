@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import CustomSelect from "./CustomSelect";
 import { useFilters } from "@/providers/FiltersProvider";
+import CustomSelect from "./CustomSelect";
+import { Fragment } from "react";
 
 export default function Filters() {
   const { config, setOpenDropdown } = useFilters();
@@ -16,18 +17,18 @@ export default function Filters() {
       {/* --- Filter_bar (Desktop) --- */}
       <div className="hidden items-center gap-6 lg:flex">
         {config.map((f) => (
-          <label
-            key={f.key}
-            htmlFor={f.key}
-            className="text-grey-500 flex items-center gap-2 text-sm whitespace-nowrap">
-            {f.label}
+          <Fragment key={f.key}>
+            <label htmlFor={f.key} className="text-grey-500 text-sm whitespace-nowrap">
+              {f.label}
+            </label>
+
             <CustomSelect
+              id={f.key}
               value={f.value}
-              queryKey={f.key}
               options={f.options}
               setSelected={f.setValue}
             />
-          </label>
+          </Fragment>
         ))}
       </div>
 
