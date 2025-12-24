@@ -19,7 +19,7 @@ export default function StatsBudgets({ data }) {
             <div className="grid gap-4 md:grid-cols-[1fr_auto] @max-[23.75rem]:grid-cols-1">
               <Chart data={budgets} />
 
-              <ul className="grid grid-cols-2 gap-4 md:grid-cols-1 @max-[23.75rem]:grid-cols-2">
+              <ul className="grid grid-cols-2 gap-4 self-center md:grid-cols-1 @max-[23.75rem]:grid-cols-2">
                 {limitArray(budgets).map((b) => (
                   <LabeledStat
                     key={b.id}

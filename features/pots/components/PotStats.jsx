@@ -8,19 +8,15 @@ export default function PotStats({
   type = "default",
   isExceeded = false,
 }) {
-  const MAX_PERCENTAGE = 100;
-
   const safeAmount = Math.max(amount, 0);
   const percentage =
-    target > 0
-      ? Math.min((safeAmount / target) * MAX_PERCENTAGE, MAX_PERCENTAGE).toFixed(2)
-      : "0.00";
+    target > 0 ? Math.min((safeAmount / target) * 100, 100).toFixed(2) : "0.00";
 
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <span className="text-grey-500 text-sm">{statsVariant[type].text}</span>
-        <span className="text-grey-900 text-3xl font-bold">
+        <span className="text-grey-900 text-[2rem] leading-[1.2] font-bold">
           {formatCurrency(safeAmount)}
         </span>
       </div>

@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useFilters } from "@/providers/FiltersProvider";
-import CustomSelect from "./CustomSelect";
 import { Fragment } from "react";
+import CustomSelect from "./CustomSelect";
+import { useFilters } from "@/providers/FiltersProvider";
 
 export default function Filters() {
   const { config, setOpenDropdown } = useFilters();

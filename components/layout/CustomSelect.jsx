@@ -27,7 +27,7 @@ export default function CustomSelect({
         size="h-full"
         className={cn(
           "border-beige-500 focus:border-beige-500 text-grey-900 px-5 py-3",
-          fullWidth ? "w-full" : "w-[180px]",
+          fullWidth ? "w-full" : "w-45",
         )}>
         <SelectValue>
           {(() => {

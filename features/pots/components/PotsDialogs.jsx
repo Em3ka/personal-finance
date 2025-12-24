@@ -1,9 +1,9 @@
 "use client";
 
-import PotForm from "./forms/PotForm";
 import { usePots } from "../PotsProvider";
 import { deletePot } from "@/lib/actions";
 import { POT_DIALOGS } from "@/utils/constants";
+import PotUpsertForm from "./forms/PotUpsertForm";
 import PotUpdateForm from "./forms/PotUpdateForm";
 import BaseDialog from "@/components/layout/BaseDialog";
 import ConfirmDialog from "@/components/layout/ConfirmDialog";
@@ -23,7 +23,7 @@ export default function PotsDialogs() {
           title={title(dialog.data.name)}
           message={message}>
           <PotUpdateForm
-            type={updateType}
+            mode={updateType}
             onSuccess={closeDialog}
             formData={{
               id: dialog.data.id,
@@ -41,8 +41,8 @@ export default function PotsDialogs() {
 
       return (
         <BaseDialog open onCancel={closeDialog} title={title()} message={message}>
-          <PotForm
-            variant={formVariant}
+          <PotUpsertForm
+            mode={formVariant}
             onSuccess={closeDialog}
             formData={
               dialog.type === "edit"
@@ -67,6 +67,7 @@ export default function PotsDialogs() {
           action={deletePot}
           onCancel={closeDialog}
           title={`Delete ‘${dialog.data.name}’ ?`}
+          loadingText={`Deleting ${dialog.data.name} pot...`}
           message={`Are you sure you want to delete this ${dialog.data.name.toLowerCase()}? 
           This action cannot be reversed, and all the data inside it will be removed forever.`}>
           {({ formAction, formId }) => (

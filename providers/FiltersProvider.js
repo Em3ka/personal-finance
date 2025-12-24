@@ -12,7 +12,10 @@ function FiltersProvider({ children, config = [] }) {
     category: false,
   });
 
-  const filters = { sort, category };
+  const filters = {
+    sort,
+    category,
+  };
 
   const value = {
     openDropdown,

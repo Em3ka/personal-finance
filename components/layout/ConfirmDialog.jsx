@@ -9,8 +9,8 @@ import {
   DialogContent,
   DialogDescription,
 } from "../ui/Dialog";
-import { useActionState, useId } from "react";
 import { useToast } from "@/hooks/useToast";
+import { useActionState, useId } from "react";
 import ActionButton from "../ui/ActionButton";
 import XIcon from "@/assets/icon-close-modal.svg";
 
@@ -21,6 +21,7 @@ export default function ConfirmDialog({
   message,
   onCancel,
   children,
+  loadingText = "Deleting...",
 }) {
   const formId = useId();
   const [state, formAction, isPending] = useActionState(action, {
@@ -36,11 +37,11 @@ export default function ConfirmDialog({
         showCloseButton={false}
         className="w-140 gap-5 rounded-xl px-5 py-6 md:gap-5 md:p-8">
         <DialogHeader className="flex-row items-center justify-between">
-          <DialogTitle className="text-xl font-bold md:text-[32px]">{title}</DialogTitle>
+          <DialogTitle className="text-xl font-bold md:text-[2rem]">{title}</DialogTitle>
           <DialogClose asChild>
             <button
               aria-label="Close dialog"
-              className="hover:bg-grey-900 inline-flex size-[25px] cursor-pointer appearance-none items-center justify-center rounded-full hover:text-white">
+              className="hover:bg-grey-900 inline-flex size-6 cursor-pointer appearance-none items-center justify-center rounded-full hover:text-white">
               <XIcon aria-hidden={true} />
             </button>
           </DialogClose>
@@ -55,7 +56,7 @@ export default function ConfirmDialog({
             type="submit"
             variant="danger"
             loading={isPending}
-            loadingText="Deleting...">
+            loadingText={loadingText}>
             Yes, Confirm Deletion
           </ActionButton>
 

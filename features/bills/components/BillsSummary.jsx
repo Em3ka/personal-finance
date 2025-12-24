@@ -11,7 +11,7 @@ export default function BillsSummary({ data }) {
 
   const paidCount = paidBills.length;
   const upcomingCount = upcomingBills.length;
-  const dueSoonCount = dueSoonBills.length;
+  const dueCount = dueSoonBills.length;
 
   const paidTotal = formatCurrency(
     paidBills.reduce((acc, cur) => acc + Math.abs(cur.amount), 0),
@@ -21,25 +21,21 @@ export default function BillsSummary({ data }) {
     upcomingBills.reduce((acc, cur) => acc + Math.abs(cur.amount), 0),
   );
 
-  const dueSoonTotal = formatCurrency(
+  const dueTotal = formatCurrency(
     dueSoonBills.reduce((acc, cur) => acc + Math.abs(cur.amount), 0),
   );
 
-  const billList = [
+  const summaryList = [
     { title: "Paid Bills", text: `${paidCount} (${paidTotal})` },
     { title: "Total Upcoming", text: `${upcomingCount} (${upcomingTotal})` },
-    {
-      title: "Due Soon",
-      text: `${dueSoonCount} (${dueSoonTotal})`,
-      color: "text-red-500",
-    },
+    { title: "Due Soon", text: `${dueCount} (${dueTotal})`, color: "text-red-500" },
   ];
 
   return (
     <article className="space-y-6 rounded-xl bg-white p-5">
       <h2 className="font-bold">Summary</h2>
       <ul className="divide-y">
-        {billList.map((b) => (
+        {summaryList.map((b) => (
           <li key={b.title} className="py-4 first:pt-0 last:pb-0">
             <BillSummaryItem title={b.title} text={b.text} color={b.color} />
           </li>

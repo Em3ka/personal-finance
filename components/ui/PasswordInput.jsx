@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/utils/helpers";
-
 import InputBase from "./InputBase";
+import { cn } from "@/utils/helpers";
 import EyeIcon from "@/assets/icon-show-password.svg";
 import EyeSlashIcon from "@/assets/icon-hide-password.svg";
 

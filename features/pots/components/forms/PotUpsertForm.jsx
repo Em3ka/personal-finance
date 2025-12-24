@@ -1,5 +1,5 @@
 import Field from "@/components/ui/Field";
-import { updatePot } from "@/lib/actions";
+import { upsertPot } from "@/lib/actions";
 import { useToast } from "@/hooks/useToast";
 import TextInput from "@/components/ui/TextInput";
 import ActionButton from "@/components/ui/ActionButton";
@@ -8,7 +8,7 @@ import CustomSelect from "@/components/layout/CustomSelect";
 import SelectThemeItem from "@/components/layout/SelectThemeItem";
 import { colorSelections, MAX_CHARS, potActionLabels } from "@/utils/constants";
 
-export default function PotForm({ formData, onSuccess, variant = "create" }) {
+export default function PotUpsertForm({ formData, onSuccess, mode = "create" }) {
   const { potId, usedColors, initialTheme, initialPotName, initialTargetAmount } =
     formData;
 
@@ -16,7 +16,7 @@ export default function PotForm({ formData, onSuccess, variant = "create" }) {
   const [input, setInput] = useState(initialPotName || "");
   const [theme, setTheme] = useState(initialTheme || colorSelections[0].value);
 
-  const potAction = updatePot.bind(null, { variant, potId });
+  const potAction = upsertPot.bind(null, { mode, potId });
   const [state, formAction, isPending] = useActionState(potAction, {
     success: false,
     message: null,
@@ -87,8 +87,8 @@ export default function PotForm({ formData, onSuccess, variant = "create" }) {
         form={formId}
         type="submit"
         loading={isPending}
-        loadingText={potActionLabels[variant].pendingText}>
-        {potActionLabels[variant].text}
+        loadingText={potActionLabels[mode].pendingText}>
+        {potActionLabels[mode].text}
       </ActionButton>
     </>
   );

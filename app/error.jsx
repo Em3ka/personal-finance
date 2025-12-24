@@ -5,7 +5,15 @@ import Image from "next/image";
 export default function Error({ error, reset }) {
   return (
     <div className="bg-beige-100 flex h-screen flex-col items-center justify-center gap-4">
-      <Image src="/broken-robot.png" height={300} width={400} alt="broken robot" />
+      <div className="relative h-[300] w-[400]">
+        <Image
+          fill
+          sizes="400"
+          loading="eager"
+          alt="broken robot"
+          src="/broken-robot.png"
+        />
+      </div>
       <h2 className="text-xl font-bold">Something went wrong</h2>
       <button
         onClick={reset}

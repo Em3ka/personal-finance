@@ -11,7 +11,7 @@ import MobileFilters from "@/components/layout/MobileFilters";
 export default function FiltersLayout() {
   const [{ search }, setFilters] = useUrlFilters();
   const [isPending, startTransition] = useTransition();
-  const isMobile = useMediaQuery("(max-width: 1024px)");
+  const isMobile = useMediaQuery("(max-width: 64rem)");
 
   function handleChange(e) {
     startTransition(async () => {

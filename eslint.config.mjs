@@ -1,7 +1,6 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
-
 import unusedImports from "eslint-plugin-unused-imports";
 import importPlugin from "eslint-plugin-import";
 
@@ -14,13 +13,7 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   {
-    ignores: [
-      "node_modules/**",
-      ".next/**",
-      "out/**",
-      "build/**",
-      "next-env.d.ts",
-    ],
+    ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"],
   },
 
   {

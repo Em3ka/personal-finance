@@ -8,20 +8,22 @@ import TextInput from "@/components/ui/TextInput";
 import { potActionLabels } from "@/utils/constants";
 import { useActionState, useId, useState } from "react";
 import ActionButton from "@/components/ui/ActionButton";
-import { capFirstLetter, formatCurrency } from "@/utils/helpers";
-import DualProgressBar from "@/components/layout/DualProgressbar";
+import PreviewProgressBar from "@/components/layout/PreviewProgressbar";
+import { capFirstLetter, formatCurrency, preventPlusMinusKeys } from "@/utils/helpers";
 
-export default function PotUpdateForm({ type, formData, onSuccess }) {
+export default function PotUpdateForm({ mode, formData, onSuccess }) {
   const { total, target, id } = formData;
 
   const formId = useId();
   const [input, setInput] = useState(0);
 
-  // Calculate the new total based on the action type (add or withdraw)
-  const newAmount = type === "add" ? total + input : total - input;
+  /** Calculate the "new total" based on the action type (add or withdraw)
+   * Formula: new input + total saving
+   * */
+  const newAmount = mode === "add" ? total + input : total - input;
 
-  // Check if withdrawal amount exceeds the current total
-  const isExceeded = type === "withdraw" && input > total;
+  // Check if withdrawal amount exceeds the total savings
+  const isExceeded = mode === "withdraw" && input > total;
 
   const [state, formAction, isPending] = useActionState(updatePotTotal, {
     success: false,
@@ -40,22 +42,29 @@ export default function PotUpdateForm({ type, formData, onSuccess }) {
           target={target}
           amount={newAmount}
           isExceeded={isExceeded}
-          type={input > 0 ? type : "default"}>
-          <DualProgressBar type={type} change={input} current={total} maximum={target} />
+          type={input > 0 ? mode : "default"}>
+          <PreviewProgressBar
+            operation={mode}
+            savedAmount={total}
+            pendingDelta={input}
+            targetAmount={target}
+          />
         </PotStats>
 
         <Field
           htmlFor="amount"
           isError={isExceeded}
-          label={`Amount to ${capFirstLetter(type)}`}
+          label={`Amount to ${capFirstLetter(mode)}`}
           message={isExceeded && `Amount to withdraw exceeds ${formatCurrency(total)}`}>
           <TextInput
+            min="0"
             required
             fullWidth
             id="amount"
             type="number"
             leftIcon="$"
             placeholder="e.g. 200"
+            onKeyDown={preventPlusMinusKeys}
             onChange={(e) => setInput(Number(e.target.value))}
           />
         </Field>
@@ -65,8 +74,8 @@ export default function PotUpdateForm({ type, formData, onSuccess }) {
         form={formId}
         type="submit"
         loading={isPending}
-        loadingText={potActionLabels[type].pendingText}>
-        {potActionLabels[type].text}
+        loadingText={potActionLabels[mode].pendingText}>
+        {potActionLabels[mode].text}
       </ActionButton>
     </>
   );

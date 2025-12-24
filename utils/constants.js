@@ -163,11 +163,11 @@ export const SORT_DEFINITIONS = {
   "amount-asc": {
     column: "amount",
     ascending: true,
-    compare: (a, b) => Math.abs(a.amount) - Math.abs(b.amount),
+    compare: (a, b) => Math.abs(b.amount) - Math.abs(a.amount),
   },
   "amount-desc": {
     column: "amount",
     ascending: false,
-    compare: (a, b) => Math.abs(b.amount) - Math.abs(a.amount),
+    compare: (a, b) => Math.abs(a.amount) - Math.abs(b.amount),
   },
 };

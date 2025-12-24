@@ -19,7 +19,8 @@ export default function SignupForm() {
   });
 
   // Validate one field using its Zod schema (SignupSchema).
-  function validateSingleField(fieldName, value) {
+  function validateSingleField(fieldName, e) {
+    const value = e.target.value;
     const result = FieldSchema[fieldName].safeParse({ [fieldName]: value });
 
     setFieldErrors((prev) => ({
