@@ -13,10 +13,7 @@ import FieldDescription from "@/components/ui/FieldDescription";
 
 export default function SignupForm() {
   const [fieldErrors, setFieldErrors] = useState({});
-  const [state, formAction, isPending] = useActionState(createUser, {
-    message: "",
-    success: false,
-  });
+  const [state, formAction, isPending] = useActionState(createUser);
 
   // Validate one field using its Zod schema (SignupSchema).
   function validateSingleField(fieldName, e) {
@@ -43,7 +40,8 @@ export default function SignupForm() {
 
   return (
     <>
-      <h1 className="text-[2rem] font-bold">Sign Up</h1>
+      <h1 className="text-[2rem] leading-[1.2] font-bold">Sign Up</h1>
+
       <form id="signup-form" action={formAction} className="space-y-4">
         <Field
           htmlFor="name"

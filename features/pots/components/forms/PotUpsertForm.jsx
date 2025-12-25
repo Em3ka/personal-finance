@@ -17,10 +17,7 @@ export default function PotUpsertForm({ formData, onSuccess, mode = "create" }) 
   const [theme, setTheme] = useState(initialTheme || colorSelections[0].value);
 
   const potAction = upsertPot.bind(null, { mode, potId });
-  const [state, formAction, isPending] = useActionState(potAction, {
-    success: false,
-    message: null,
-  });
+  const [state, formAction, isPending] = useActionState(potAction);
 
   useToast(state, onSuccess);
 

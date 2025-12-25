@@ -105,6 +105,11 @@ export const potActionLabels = {
   edit: { text: "Save Changes", pendingText: "Saving changes..." },
 };
 
+export const budgetActionLabels = {
+  create: { text: "Add Budget", pendingText: "Adding budget..." },
+  edit: { text: "Save Changes", pendingText: "Saving changes..." },
+};
+
 export const statsVariant = {
   default: { color: "text-grey-500", text: "Total Saving" },
   add: { color: "text-green-500", text: "New Amount" },

@@ -16,7 +16,9 @@ export default function Chart({ data }) {
   const handleMouseLeave = () => setActiveIndex(null);
 
   return (
-    <ResponsiveContainer className="min-h-72 max-w-72 justify-self-center">
+    <ResponsiveContainer
+      initialDimension={{ width: 288, height: 288 }}
+      className="min-h-72 max-w-72 justify-self-center">
       <PieChart>
         {/* --- solid background ring --- */}
         <Pie
@@ -40,7 +42,6 @@ export default function Chart({ data }) {
             />
           ))}
         </Pie>
-
         {/* --- lighter background ring --- */}
         <Pie
           data={chartData}
@@ -64,7 +65,6 @@ export default function Chart({ data }) {
             />
           ))}
         </Pie>
-
         <Customized
           component={<ChartCenterLabel totalSpent={totalSpent} totalLimit={totalLimit} />}
         />

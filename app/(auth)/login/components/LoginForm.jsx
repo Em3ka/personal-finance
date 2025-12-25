@@ -11,16 +11,13 @@ import SpinnerMini from "@/components/layout/SpinnerMini";
 import FieldDescription from "@/components/ui/FieldDescription";
 
 export default function LoginForm() {
-  const [state, formAction, isPending] = useActionState(loginUser, {
-    message: "",
-    success: false,
-  });
+  const [state, formAction, isPending] = useActionState(loginUser);
 
   useToast(state);
 
   return (
     <>
-      <h1 className="text-[32px] font-bold">Login</h1>
+      <h1 className="text-[2rem] leading-[1.2] font-bold">Login</h1>
 
       <form id="login-form" action={formAction} className="space-y-4">
         <Field htmlFor="email" label="Email">

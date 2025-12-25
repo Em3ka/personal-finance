@@ -41,7 +41,7 @@ export default function BudgetsDialogs() {
         title="Edit Budget"
         message="As your budgets change, feel free to update your spending limits.">
         <BudgetForm
-          variant="edit"
+          mode="edit"
           onSuccess={closeDialog}
           formData={{
             budgetId: dialog.budget.id,
@@ -62,6 +62,7 @@ export default function BudgetsDialogs() {
         action={deleteBudget}
         onCancel={closeDialog}
         title={`Delete ‘${dialog.budget.category}’?`}
+        loadingText={`Deleting ${dialog.budget.category} Budget`}
         message={`Are you sure you want to delete this ${dialog.budget.category.toLowerCase()}? 
             This action cannot be reversed, and all the data inside it will be removed forever.`}>
         {({ formAction, formId }) => (

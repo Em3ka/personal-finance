@@ -26,7 +26,7 @@ export default function PotUpdateForm({ mode, formData, onSuccess }) {
   const isExceeded = mode === "withdraw" && input > total;
 
   const [state, formAction, isPending] = useActionState(updatePotTotal, {
-    success: false,
+    status: "",
     message: null,
   });
 
@@ -73,6 +73,7 @@ export default function PotUpdateForm({ mode, formData, onSuccess }) {
       <ActionButton
         form={formId}
         type="submit"
+        disabled={isExceeded}
         loading={isPending}
         loadingText={potActionLabels[mode].pendingText}>
         {potActionLabels[mode].text}

@@ -67,7 +67,7 @@ export default function PotsDialogs() {
           action={deletePot}
           onCancel={closeDialog}
           title={`Delete ‘${dialog.data.name}’ ?`}
-          loadingText={`Deleting ${dialog.data.name} pot...`}
+          loadingText={`Deleting ${dialog.data.name} Pot`}
           message={`Are you sure you want to delete this ${dialog.data.name.toLowerCase()}? 
           This action cannot be reversed, and all the data inside it will be removed forever.`}>
           {({ formAction, formId }) => (

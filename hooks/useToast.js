@@ -14,14 +14,30 @@ import { useEffect, useEffectEvent } from "react";
  * @param {Function} [onAction] - Optional callback invoked on success.
  */
 export function useToast(state, onAction) {
-  const onSuccessEvent = useEffectEvent(() => {
+  const onActionEvent = useEffectEvent(() => {
     onAction?.();
   });
 
   useEffect(() => {
-    if (!state.message) return;
+    if (!state?.message) return;
 
-    state.success ? toast.success(state.message) : toast.error(state.message);
-    if (state.success) onSuccessEvent();
-  }, [state.success, state.message]);
+    if (state.status === "success") {
+      toast.success(state.message);
+      onActionEvent();
+      return;
+    }
+
+    if (state.status === "forbidden") {
+      toast.warning(state.message);
+      onActionEvent();
+      return;
+    }
+
+    if (state.status === "error") {
+      toast.error(state.message);
+      return;
+    }
+
+    toast.error(state.message);
+  }, [state?.status, state?.message]);
 }

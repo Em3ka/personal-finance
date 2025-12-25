@@ -2,32 +2,24 @@
 
 import Field from "@/components/ui/Field";
 import { useToast } from "@/hooks/useToast";
-import { addOrEditBudget } from "@/lib/actions";
+import { upsertBudget } from "@/lib/actions";
 import TextInput from "@/components/ui/TextInput";
 import ActionButton from "@/components/ui/ActionButton";
 import { useActionState, useId, useState } from "react";
 import CustomSelect from "@/components/layout/CustomSelect";
 import SelectThemeItem from "@/components/layout/SelectThemeItem";
-import { categoryOptions, colorSelections } from "@/utils/constants";
+import { budgetActionLabels, categoryOptions, colorSelections } from "@/utils/constants";
 
-const buttonLabel = {
-  default: { text: "Add Budget", pendingText: "Adding budget..." },
-  edit: { text: "Save Changes", pendingText: "Saving changes..." },
-};
-
-export default function BudgetForm({ formData, onSuccess, variant = "default" }) {
-  const formId = useId();
+export default function BudgetForm({ formData, onSuccess, mode = "create" }) {
   const { budgetId, usedColors, initialTheme, initialCategory, initialMaxSpend } =
     formData;
 
+  const formId = useId();
   const [category, setCategory] = useState(initialCategory || categoryOptions[1].value);
   const [theme, setTheme] = useState(initialTheme || colorSelections[0].value);
 
-  const addEditBudget = addOrEditBudget.bind(null, { variant, budgetId });
-  const [state, formAction, isPending] = useActionState(addEditBudget, {
-    success: false,
-    message: null,
-  });
+  const addEditBudget = upsertBudget.bind(null, { mode, budgetId });
+  const [state, formAction, isPending] = useActionState(addEditBudget);
 
   useToast(state, onSuccess);
 
@@ -89,8 +81,8 @@ export default function BudgetForm({ formData, onSuccess, variant = "default" })
         form={formId}
         type="submit"
         loading={isPending}
-        loadingText={buttonLabel[variant].pendingText}>
-        {buttonLabel[variant].text}
+        loadingText={budgetActionLabels[mode].pendingText}>
+        {budgetActionLabels[mode].text}
       </ActionButton>
     </>
   );

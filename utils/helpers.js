@@ -152,19 +152,19 @@ export function mapSupabaseError(error, action, resource = "item") {
   switch (error.code) {
     case "42501":
       return {
-        success: false,
+        status: "forbidden",
         message: `You don't have permission to ${action} this ${resource}.`,
       };
 
     case "23505":
       return {
-        success: false,
+        status: "forbidden",
         message: `A ${resource} with this name already exists.`,
       };
 
     default:
       return {
-        success: false,
+        status: "error",
         message: "Something went wrong. Please try again.",
       };
   }
@@ -177,7 +177,7 @@ export function mapSupabaseError(error, action, resource = "item") {
  * @param {Array|number|null} affected - Updated rows array OR count of affected rows.
  * @param {string} action - The user action, e.g., "delete", "edit", "create".
  * @param {string} resource - The resource name, e.g., "pot", "budget".
- * @returns {{ success: false, message: string } | null}
+ * @returns {{ status: string, message: string } | null}
  *   Returns a failure object if error or zero rows affected, else null.
  */
 export function handleSupabaseResponse(error, affected, action, resource) {
@@ -185,15 +185,13 @@ export function handleSupabaseResponse(error, affected, action, resource) {
     return mapSupabaseError(error, action, resource);
   }
 
-  console.log(affected);
-
   // No rows affected, likely due to RLS filtering
   if (
     (Array.isArray(affected) && affected.length === 0) ||
     (typeof affected === "number" && affected === 0)
   ) {
     return {
-      success: false,
+      status: "forbidden",
       message: `You don't have permission to ${action} this ${resource}.`,
     };
   }
