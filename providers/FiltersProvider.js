@@ -12,7 +12,7 @@ function FiltersProvider({ children, config = [] }) {
     category: false,
   });
 
-  const filters = {
+  const filtersMap = {
     sort,
     category,
   };
@@ -22,7 +22,7 @@ function FiltersProvider({ children, config = [] }) {
     setOpenDropdown,
     config: config.map((item) => ({
       ...item,
-      value: filters[item.key] ?? item.options[0].value,
+      value: filtersMap[item.key] ?? item.options[0].value,
       setValue: (v) => setFilters({ [item.key]: v }),
     })),
   };

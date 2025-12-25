@@ -2,14 +2,14 @@ import { Suspense, use } from "react";
 import { trnColumns } from "@/utils/constants";
 import { loadFilters } from "../search-params";
 import { getTransactions } from "@/lib/data-service";
-import { FiltersProvider } from "@/providers/FiltersProvider";
-import { filtersConfig } from "@/features/transactions/trnFiltersConfig";
 import TableLayout from "@/components/layout/TableLayout";
 import FiltersLayout from "@/components/layout/FiltersLayout";
-import TableSkeleton from "@/components/layout/TableSkeleton";
+import { FiltersProvider } from "@/providers/FiltersProvider";
 import SectionHeading from "@/components/layout/SectionHeading";
+import { filtersConfig } from "@/features/transactions/trnFiltersConfig";
 import MobileTrnRow from "@/features/transactions/components/MobileTrnRow";
 import DesktopTrnRow from "@/features/transactions/components/DesktopTrnRow";
+import TrnTableSkeleton from "@/features/transactions/components/TrnTableSkeleton";
 
 export const metadata = {
   title: "Transactions",
@@ -23,12 +23,13 @@ export default function Page({ searchParams }) {
   return (
     <>
       <SectionHeading title="Transactions" />
+
       <div className="grid gap-6 self-start rounded-xl bg-white px-5 py-6 lg:p-8">
         <FiltersProvider config={filtersConfig}>
           <FiltersLayout />
         </FiltersProvider>
 
-        <Suspense fallback={<TableSkeleton columns={trnColumns} />}>
+        <Suspense fallback={<TrnTableSkeleton />}>
           <TableLayout
             data={trnData}
             columns={trnColumns}

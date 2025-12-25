@@ -4,7 +4,6 @@ import { loadFilters } from "../search-params";
 import { billsColumns } from "@/utils/constants";
 import TableLayout from "@/components/layout/TableLayout";
 import { FiltersProvider } from "@/providers/FiltersProvider";
-import TableSkeleton from "@/components/layout/TableSkeleton";
 import FiltersLayout from "@/components/layout/FiltersLayout";
 import SectionHeading from "@/components/layout/SectionHeading";
 import BillsTotal from "@/features/bills/components/BillsTotal";
@@ -13,6 +12,7 @@ import BillsSummary from "@/features/bills/components/BillsSummary";
 import MobileBillsRow from "@/features/bills/components/MobileBillsRow";
 import DesktopBillsRow from "@/features/bills/components/DesktopBillsRow";
 import BillsTotalSkeleton from "@/features/bills/components/BillsTotalSkeleton";
+import BillsTableSkeleton from "@/features/bills/components/BillsTableSkeleton";
 import BillsSummarySkeleton from "@/features/bills/components/BillsSummarySkeleton";
 
 export const metadata = {
@@ -45,7 +45,7 @@ export default function Page({ searchParams }) {
             <FiltersLayout />
           </FiltersProvider>
 
-          <Suspense fallback={<TableSkeleton columns={billsColumns} />}>
+          <Suspense fallback={<BillsTableSkeleton />}>
             <TableLayout
               data={bills}
               columns={billsColumns}
