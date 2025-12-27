@@ -16,7 +16,7 @@ export default function Field({
         "aria-describedby": messageId,
         onChange: (e) => {
           children.props?.onChange?.(e);
-          onFieldChange?.(htmlFor, e);
+          onFieldChange?.(htmlFor, e.target.value);
         },
       })
     : children;

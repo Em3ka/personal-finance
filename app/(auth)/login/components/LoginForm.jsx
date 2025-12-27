@@ -7,7 +7,7 @@ import { useToast } from "@/hooks/useToast";
 import TextInput from "@/components/ui/TextInput";
 import ActionButton from "@/components/ui/ActionButton";
 import PasswordInput from "@/components/ui/PasswordInput";
-import SpinnerMini from "@/components/layout/SpinnerMini";
+import Spinner from "@/components/layout/Spinner";
 import FieldDescription from "@/components/ui/FieldDescription";
 
 export default function LoginForm() {
@@ -23,7 +23,6 @@ export default function LoginForm() {
         <Field htmlFor="email" label="Email">
           <TextInput
             required
-            fullWidth
             id="email"
             name="email"
             type="email"
@@ -35,7 +34,6 @@ export default function LoginForm() {
         <Field htmlFor="password" label="Password">
           <PasswordInput
             required
-            fullWidth
             id="password"
             name="password"
             autoComplete="current-password"
@@ -45,7 +43,7 @@ export default function LoginForm() {
       </form>
 
       <ActionButton form="login-form" type="submit" disabled={isPending}>
-        {!isPending ? "Login" : <SpinnerMini />}
+        {!isPending ? "Login" : <Spinner />}
       </ActionButton>
 
       <FieldDescription linkLabel="Sign Up" to="/signup">

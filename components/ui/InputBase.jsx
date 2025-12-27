@@ -22,7 +22,13 @@ import { isValidElement } from "react";
  *
  * @returns {JSX.Element} The rendered input component.
  */
-export default function InputBase({ leftIcon, rightIcon, fullWidth = false, ...props }) {
+export default function InputBase({
+  leftIcon,
+  rightIcon,
+  className,
+  wrapperClassName,
+  ...props
+}) {
   function renderIcon(icon, position) {
     if (!icon) return null;
 
@@ -59,16 +65,18 @@ export default function InputBase({ leftIcon, rightIcon, fullWidth = false, ...p
   const hasRight = Boolean(rightIcon);
 
   return (
-    <div className={cn("relative w-full", fullWidth ? "" : "max-w-[20rem]")}>
+    <div className={`relative w-full ${wrapperClassName}`}>
       {renderIcon(leftIcon, "left")}
+
       <input
         {...props}
         className={cn(
-          "disabled:text-grey-900/50 placeholder-beige-500 disabled:border-grey-300 border-beige-500 disabled:bg-grey-100 focus:ring-beige-500/50 w-full rounded-lg border px-5 py-3 text-sm focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-70",
+          `disabled:text-grey-900/50 placeholder-beige-500 disabled:border-grey-300 border-beige-500 disabled:bg-grey-100 focus:ring-beige-500/50 w-full rounded-lg border px-5 py-3 text-sm focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-70 ${className}`,
           hasLeft && "pl-10",
           hasRight && "pr-10",
         )}
       />
+
       {renderIcon(rightIcon, "right")}
     </div>
   );

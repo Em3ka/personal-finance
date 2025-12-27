@@ -7,18 +7,17 @@ export default function MobileFilters() {
   const { config, openDropdown } = useFilters();
 
   return (
-    <div className="grid gap-1.5 lg:hidden">
+    <div className="mt-1.5 space-y-1.5 lg:hidden">
       {config.map((f) =>
         openDropdown[f.key] ? (
           <label
             key={f.key}
             htmlFor={f.key}
             className="text-grey-500 flex items-center gap-2 text-sm whitespace-nowrap">
-            {f.label}
             <CustomSelect
               fullWidth
+              id={f.key}
               value={f.value}
-              queryKey={f.key}
               options={f.options}
               setSelected={f.setValue}
             />

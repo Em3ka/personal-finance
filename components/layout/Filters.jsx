@@ -14,14 +14,13 @@ export default function Filters() {
 
   return (
     <>
-      {/* --- Filter_bar (Desktop) --- */}
+      {/* --- Filter_bar selects (Desktop) --- */}
       <div className="hidden items-center gap-6 lg:flex">
         {config.map((f) => (
           <Fragment key={f.key}>
             <label htmlFor={f.key} className="text-grey-500 text-sm whitespace-nowrap">
               {f.label}
             </label>
-
             <CustomSelect
               id={f.key}
               value={f.value}
@@ -32,7 +31,7 @@ export default function Filters() {
         ))}
       </div>
 
-      {/* --- Filter_bar toggles (Mobile) --- */}
+      {/* --- Filter_bar buttons (Mobile) --- */}
       <div className="flex items-center justify-center gap-6 lg:hidden">
         {config.map((f) => {
           return (

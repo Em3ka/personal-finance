@@ -1,5 +1,5 @@
 import InputBase from "./InputBase";
-import SpinnerMini from "../layout/SpinnerMini";
+import Spinner from "../layout/Spinner";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 export default function SearchInput({ isLoading = false, ...props }) {
@@ -7,7 +7,8 @@ export default function SearchInput({ isLoading = false, ...props }) {
     <InputBase
       {...props}
       aria-busy={isLoading}
-      rightIcon={isLoading ? <SpinnerMini color="dark" /> : MagnifyingGlassIcon}
+      wrapperClassName="lg:max-w-[20rem]"
+      rightIcon={isLoading ? <Spinner color="dark" /> : MagnifyingGlassIcon}
     />
   );
 }

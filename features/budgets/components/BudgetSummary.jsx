@@ -11,7 +11,7 @@ export default function BudgetSummary() {
     <div className="grid-cards-tight grid gap-8 self-start rounded-xl bg-white p-8">
       <Chart data={budgets} />
 
-      <div className="space-y-6">
+      <div className="space-y-6 self-center">
         <h2 className="text-xl font-bold">Spending Summary</h2>
         <ul>
           {budgets.map((b, i) => (

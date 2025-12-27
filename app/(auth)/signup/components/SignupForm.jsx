@@ -5,9 +5,9 @@ import { createUser } from "@/lib/actions";
 import { useToast } from "@/hooks/useToast";
 import { useActionState, useState } from "react";
 import TextInput from "@/components/ui/TextInput";
+import Spinner from "@/components/layout/Spinner";
 import { FieldSchema } from "@/lib/schemas/fieldSchema";
 import ActionButton from "@/components/ui/ActionButton";
-import SpinnerMini from "@/components/layout/SpinnerMini";
 import PasswordInput from "@/components/ui/PasswordInput";
 import FieldDescription from "@/components/ui/FieldDescription";
 
@@ -16,8 +16,7 @@ export default function SignupForm() {
   const [state, formAction, isPending] = useActionState(createUser);
 
   // Validate one field using its Zod schema (SignupSchema).
-  function validateSingleField(fieldName, e) {
-    const value = e.target.value;
+  function validateSingleField(fieldName, value) {
     const result = FieldSchema[fieldName].safeParse({ [fieldName]: value });
 
     setFieldErrors((prev) => ({
@@ -28,11 +27,11 @@ export default function SignupForm() {
 
   // Field error messages: (Realtime validation errors OR server errors)
   const fieldMessages = {
-    name: fieldErrors.name?.[0] || state.errors?.fieldErrors?.name?.[0],
-    email: fieldErrors.email?.[0] || state.errors?.fieldErrors?.email?.[0],
+    name: fieldErrors.name?.[0] || state?.errors?.fieldErrors?.name?.[0],
+    email: fieldErrors.email?.[0] || state?.errors?.fieldErrors?.email?.[0],
     password:
       fieldErrors.password?.[0] ||
-      state.errors?.fieldErrors?.password?.[0] ||
+      state?.errors?.fieldErrors?.password?.[0] ||
       "At least 8 characters, including symbols and numbers.",
   };
 
@@ -51,7 +50,6 @@ export default function SignupForm() {
           onFieldChange={validateSingleField}>
           <TextInput
             required
-            fullWidth
             id="name"
             name="name"
             autoComplete="name"
@@ -67,7 +65,6 @@ export default function SignupForm() {
           onFieldChange={validateSingleField}>
           <TextInput
             required
-            fullWidth
             id="email"
             name="email"
             type="email"
@@ -84,7 +81,6 @@ export default function SignupForm() {
           onFieldChange={validateSingleField}>
           <PasswordInput
             required
-            fullWidth
             id="password"
             name="password"
             autoComplete="new-password"
@@ -94,7 +90,7 @@ export default function SignupForm() {
       </form>
 
       <ActionButton form="signup-form" type="submit" disabled={isPending}>
-        {!isPending ? "Create Account" : <SpinnerMini />}
+        {!isPending ? "Create Account" : <Spinner />}
       </ActionButton>
 
       <FieldDescription linkLabel="Login" to="/login">

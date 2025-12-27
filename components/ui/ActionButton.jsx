@@ -1,5 +1,5 @@
 import { cn } from "@/utils/helpers";
-import SpinnerMini from "../layout/SpinnerMini";
+import Spinner from "../layout/Spinner";
 
 export default function ActionButton({
   onClick,
@@ -35,7 +35,7 @@ export default function ActionButton({
       className={cn(baseStyles, variantStyles[variant], className)}>
       {loading ? (
         <>
-          <SpinnerMini />
+          <Spinner />
           <span aria-hidden>{loadingText ?? children}</span>
         </>
       ) : (

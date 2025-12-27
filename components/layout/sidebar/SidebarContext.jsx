@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useMediaQuery } from "usehooks-ts";
 import { sidebarConfig } from "@/utils/constants";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { createContext, use, useEffect, useState } from "react";
 
 const SidebarContext = createContext();
 
 function SidebarProvider({ defaultOpen, children }) {
-  const isMobile = useMediaQuery("(max-width: 1024px)");
+  const isMobile = useMediaQuery("(max-width: 64rem)");
 
   const [sidebarState, setSidebarState] = useState({
     hasInteracted: false,
@@ -27,8 +27,7 @@ function SidebarProvider({ defaultOpen, children }) {
   }, [sidebarState.isCollapsed]);
 
   return (
-    <SidebarContext.Provider
-      value={{ sidebarState, handleToggle, sidebarConfig }}>
+    <SidebarContext.Provider value={{ sidebarState, handleToggle, sidebarConfig }}>
       <motion.nav
         key={isMobile}
         initial={sidebarState.isCollapsed}
